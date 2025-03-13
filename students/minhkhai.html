@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hành Trình Công Nghệ Phần Mềm Của Tôi</title>
+    <style>
+      :root {
+        --primary-color: #3498db;
+        --secondary-color: #2c3e50;
+        --accent-color: #e74c3c;
+        --light-color: #ecf0f1;
+        --dark-color: #34495e;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--light-color);
+        color: var(--dark-color);
+        line-height: 1.6;
+      }
+
+      header {
+        background-color: var(--secondary-color);
+        color: white;
+        text-align: center;
+        padding: 2rem 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .header-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .header-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          45deg,
+          var(--secondary-color),
+          var(--primary-color)
+        );
+        opacity: 0.8;
+        z-index: 1;
+      }
+
+      nav {
+        background-color: var(--dark-color);
+        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      nav ul {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        padding: 0.5rem 1.5rem;
+        margin: 0 0.5rem;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+      }
+
+      nav a:hover {
+        background-color: var(--primary-color);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      section {
+        margin-bottom: 4rem;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      h2 {
+        font-size: 2rem;
+        color: var(--primary-color);
+        margin-bottom: 1.5rem;
+        border-bottom: 2px solid var(--primary-color);
+        padding-bottom: 0.5rem;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        margin: 1rem 0;
+      }
+
+      p {
+        margin-bottom: 1rem;
+      }
+
+      .btn {
+        display: inline-block;
+        background-color: var(--primary-color);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background-color: #2980b9;
+        transform: translateY(-2px);
+      }
+
+      .timeline {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .timeline::after {
+        content: "";
+        position: absolute;
+        width: 6px;
+        background-color: var(--dark-color);
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -3px;
+      }
+
+      .year-container {
+        padding: 10px 40px;
+        position: relative;
+        background-color: inherit;
+        width: 50%;
+      }
+
+      .year-container::after {
+        content: "";
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        right: -17px;
+        background-color: var(--light-color);
+        border: 4px solid var(--primary-color);
+        top: 15px;
+        border-radius: 50%;
+        z-index: 1;
+      }
+
+      .left {
+        left: 0;
+      }
+
+      .right {
+        left: 50%;
+      }
+
+      .left::before {
+        content: " ";
+        height: 0;
+        position: absolute;
+        top: 22px;
+        width: 0;
+        z-index: 1;
+        right: 30px;
+        border: medium solid var(--light-color);
+        border-width: 10px 0 10px 10px;
+        border-color: transparent transparent transparent white;
+      }
+
+      .right::before {
+        content: " ";
+        height: 0;
+        position: absolute;
+        top: 22px;
+        width: 0;
+        z-index: 1;
+        left: 30px;
+        border: medium solid var(--light-color);
+        border-width: 10px 10px 10px 0;
+        border-color: transparent white transparent transparent;
+      }
+
+      .right::after {
+        left: -16px;
+      }
+
+      .year-content {
+        padding: 20px 30px;
+        background-color: white;
+        position: relative;
+        border-radius: 6px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .skill-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 1rem;
+      }
+
+      .skill-badge {
+        background-color: var(--light-color);
+        color: var(--dark-color);
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        transition: all 0.3s ease;
+      }
+
+      .skill-badge:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 2rem;
+      }
+
+      .project-card {
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .project-img {
+        height: 200px;
+        background-color: var(--dark-color);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .project-content {
+        padding: 20px;
+      }
+
+      .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-top: 1rem;
+      }
+
+      .project-tag {
+        background-color: var(--light-color);
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+      }
+
+      footer {
+        background-color: var(--secondary-color);
+        color: white;
+        text-align: center;
+        padding: 2rem 0;
+        margin-top: 2rem;
+      }
+
+      .contact-form {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .form-group {
+        margin-bottom: 1rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+
+      .form-group textarea {
+        min-height: 150px;
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 2rem;
+      }
+
+      .social-links a {
+        color: black;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+      }
+
+      .social-links a:hover {
+        color: var(--primary-color);
+        transform: scale(1.2);
+      }
+
+      @media screen and (max-width: 768px) {
+        .timeline::after {
+          left: 31px;
+        }
+
+        .year-container {
+          width: 100%;
+          padding-left: 70px;
+          padding-right: 25px;
+        }
+
+        .year-container::before {
+          left: 60px;
+          border: medium solid white;
+          border-width: 10px 10px 10px 0;
+          border-color: transparent white transparent transparent;
+        }
+
+        .left::after,
+        .right::after {
+          left: 15px;
+        }
+
+        .right {
+          left: 0;
+        }
+
+        nav ul {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        nav a {
+          display: block;
+          margin: 0.5rem 0;
+        }
+
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-bg"></div>
+      <div class="header-content">
+        <h1>Xin chào, tôi là Phạm Minh Khải</h1>
+        <p>Sinh viên Công Nghệ Phần Mềm | Lập trình viên | Trường Hutech</p>
+      </div>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="#about">Về Tôi</a></li>
+        <li><a href="#journey">Hành Trình</a></li>
+        <li><a href="#skills">Kỹ Năng</a></li>
+        <li><a href="#projects">Dự Án</a></li>
+        <li><a href="#contact">Liên Hệ</a></li>
+      </ul>
+    </nav>
+
+    <main class="container">
+      <section id="about">
+        <h2>Về Tôi</h2>
+        <p>
+          Chào mừng bạn đến với portfolio của tôi! Tôi là một sinh viên Công
+          Nghệ Phần Mềm đam mê xây dựng các giải pháp sáng tạo. Trong suốt hành
+          trình 4 năm học tập, tôi đã phát triển một nền tảng vững chắc về các
+          ngôn ngữ lập trình, framework và phương pháp phát triển phần mềm.
+        </p>
+        <p>
+          Tôi tin vào việc học hỏi liên tục và áp dụng kiến thức lý thuyết vào
+          các vấn đề thực tế. Mục tiêu của tôi là tạo ra các phần mềm không chỉ
+          vững chắc về mặt kỹ thuật mà còn mang lại giá trị ý nghĩa cho người
+          dùng.
+        </p>
+        <a href="#contact" class="btn">Liên Hệ</a>
+      </section>
+
+      <section id="journey">
+        <h2>Hành Trình Học Tập</h2>
+        <div class="timeline">
+          <div class="year-container left">
+            <div class="year-content">
+              <h3>Năm Đầu Tiên (2021)</h3>
+              <p>
+                Bắt đầu chương trình Công Nghệ Phần Mềm với các khóa học cơ bản
+                về lập trình, cấu trúc dữ liệu và phát triển web cơ bản. Lần đầu
+                tiên học HTML, CSS và JavaScript và xây dựng trang web tĩnh đầu
+                tiên.
+              </p>
+              <p>Thành tựu chính:</p>
+              <ul>
+                <li>Hoàn thành khóa học Nhập môn Lập trình với Python</li>
+                <li>
+                  Xây dựng trang web responsive đầu tiên sử dụng HTML và CSS
+                </li>
+                <li>Học cách sử dụng Git để quản lý phiên bản</li>
+              </ul>
+            </div>
+          </div>
+          <div class="year-container right">
+            <div class="year-content">
+              <h3>Năm Thứ Hai (2022)</h3>
+              <p>
+                Đào sâu hiểu biết về phát triển phần mềm với các khóa học về lập
+                trình hướng đối tượng, cơ sở dữ liệu và các công nghệ web nâng
+                cao. Bắt đầu làm việc với các framework và thư viện.
+              </p>
+              <p>Thành tựu chính:</p>
+              <ul>
+                <li>
+                  Phát triển một ứng dụng web động sử dụng JavaScript và Node.js
+                </li>
+                <li>Tạo hệ thống quản lý cơ sở dữ liệu SQL</li>
+                <li>Tham gia hackathon đầu tiên</li>
+              </ul>
+            </div>
+          </div>
+          <div class="year-container left">
+            <div class="year-content">
+              <h3>Năm Thứ Ba (2023)</h3>
+              <p>
+                Tập trung vào các chủ đề nâng cao như kiến trúc phần mềm, phát
+                triển di động và điện toán đám mây. Có được kinh nghiệm thực tế
+                thông qua các kỳ thực tập và dự án hợp tác.
+              </p>
+              <p>Thành tựu chính:</p>
+              <ul>
+                <li>Hoàn thành kỳ thực tập hè tại NVDIA</li>
+                <li>
+                  Phát triển một ứng dụng web full-stack với React và Express
+                </li>
+                <li>Học cách triển khai ứng dụng trên AWS</li>
+              </ul>
+            </div>
+          </div>
+          <div class="year-container right">
+            <div class="year-content">
+              <h3>Năm Thứ Tư (2024)</h3>
+              <p>
+                Chuyên sâu vào Công nghệ phần mềm và làm dự án năm cuối. Chuẩn
+                bị cho sự nghiệp chuyên nghiệp bằng cách mở rộng portfolio và
+                kết nối với các chuyên gia trong ngành.
+              </p>
+              <p>Thành tựu chính:</p>
+              <ul>
+                <li>Phát triển Website đọc truyện tranh</li>
+                <li>Đóng góp vào các dự án mã nguồn mở</li>
+                <li>Nhận được lời mời làm việc từ NVDIA</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills">
+        <h2>Kỹ Năng Kỹ Thuật</h2>
+
+        <h3>Ngôn Ngữ Lập Trình</h3>
+        <div class="skill-container">
+          <div class="skill-badge">HTML5</div>
+          <div class="skill-badge">CSS3</div>
+          <div class="skill-badge">JavaScript</div>
+          <div class="skill-badge">Python</div>
+          <div class="skill-badge">Java</div>
+          <div class="skill-badge">C#</div>
+          <div class="skill-badge">SQL</div>
+        </div>
+
+        <h3>Framework & Thư Viện</h3>
+        <div class="skill-container">
+          <div class="skill-badge">React</div>
+          <div class="skill-badge">Node.js</div>
+          <div class="skill-badge">Express</div>
+          <div class="skill-badge">Bootstrap</div>
+          <div class="skill-badge">jQuery</div>
+          <div class="skill-badge">Django</div>
+          <div class="skill-badge">.NET</div>
+        </div>
+
+        <h3>Công Cụ & Công Nghệ</h3>
+        <div class="skill-container">
+          <div class="skill-badge">Git</div>
+          <div class="skill-badge">GitHub</div>
+          <div class="skill-badge">VS Code</div>
+          <div class="skill-badge">MongoDB</div>
+          <div class="skill-badge">MySQL</div>
+          <div class="skill-badge">AWS</div>
+          <div class="skill-badge">Docker</div>
+          <div class="skill-badge">Figma</div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <h2>Dự Án Nổi Bật</h2>
+
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-img">
+              <img
+                src="/img/img1.jpg"
+                alt="Nền Tảng Thương Mại Điện Tử"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+            <div class="project-content">
+              <h3>Nền Tảng Thương Mại Điện Tử</h3>
+              <p>
+                Một ứng dụng thương mại điện tử full-stack với xác thực người
+                dùng, danh mục sản phẩm, giỏ hàng và xử lý thanh toán.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">React</span>
+                <span class="project-tag">Node.js</span>
+                <span class="project-tag">MongoDB</span>
+                <span class="project-tag">Stripe API</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-img">
+              <img
+                src="/img/img2.jpg"
+                alt="Nền Tảng Thương Mại Điện Tử"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+            <div class="project-content">
+              <h3>Ứng dụng quản lý tác vụ</h3>
+              <p>
+                Một ứng dụng quản lý tác vụ cộng tác với khả năng cập nhật theo
+                thời gian thực, phân công tác vụ và theo dõi tiến độ.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">React</span>
+                <span class="project-tag">Node.js</span>
+                <span class="project-tag">MongoDB</span>
+                <span class="project-tag">Stripe API</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-img">
+              <img
+                src="/img/img3.jpg"
+                alt="Ứng dụng quản lý tác vụ"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+            <div class="project-content">
+              <h3>Bảng điều khiển thời tiết</h3>
+              <p>
+                Một ứng dụng thời tiết cung cấp điều kiện hiện tại và dự báo cho
+                mọi địa điểm bằng cách tích hợp API bên ngoài.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">React</span>
+                <span class="project-tag">Node.js</span>
+                <span class="project-tag">MongoDB</span>
+                <span class="project-tag">Stripe API</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>Liên Hệ</h2>
+        <div class="contact-form">
+          <div class="form-group">
+            <label for="name">Tên</label>
+            <input type="text" id="name" placeholder="Tên của bạn" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Email của bạn" />
+          </div>
+          <div class="form-group">
+            <label for="message">Tin nhắn</label>
+            <textarea id="message" placeholder="Tin nhắn của bạn"></textarea>
+          </div>
+          <button class="btn" id="submit-btn">Gửi Tin Nhắn</button>
+        </div>
+
+        <div class="social-links">
+          <a href="#" title="GitHub">GitHub</a>
+          <a href="#" title="LinkedIn">LinkedIn</a>
+          <a href="#" title="Twitter">Twitter</a>
+          <a href="#" title="Email">Email</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Phạm Minh Khải. Tất cả quyền được bảo lưu.</p>
+    </footer>
+
+    <script>
+      // Cuộn mượt cho các liên kết neo
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Xác thực và gửi biểu mẫu
+      const form = document.querySelector(".contact-form");
+      const submitBtn = document.getElementById("submit-btn");
+
+      submitBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        if (!name || !email || !message) {
+          alert("Vui lòng điền đầy đủ các trường.");
+          return;
+        }
+
+        if (!isValidEmail(email)) {
+          alert("Vui lòng nhập địa chỉ email hợp lệ.");
+          return;
+        }
+
+        // Mô phỏng gửi biểu mẫu
+        submitBtn.textContent = "Đang gửi...";
+        submitBtn.disabled = true;
+
+        setTimeout(() => {
+          alert("Cảm ơn bạn đã gửi tin nhắn! Tôi sẽ liên hệ lại với bạn sớm.");
+          form.reset();
+          submitBtn.textContent = "Gửi Tin Nhắn";
+          submitBtn.disabled = false;
+        }, 1500);
+      });
+
+      function isValidEmail(email) {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+      }
+
+      // Hiệu ứng cho kỹ năng
+      const skillBadges = document.querySelectorAll(".skill-badge");
+
+      skillBadges.forEach((badge) => {
+        badge.addEventListener("mouseover", function () {
+          this.style.backgroundColor = "#3498db";
+          this.style.color = "white";
+        });
+
+        badge.addEventListener("mouseout", function () {
+          this.style.backgroundColor = "";
+          this.style.color = "";
+        });
+      });
+
+      // Hiệu ứng cho thẻ dự án
+      const projectCards = document.querySelectorAll(".project-card");
+
+      projectCards.forEach((card) => {
+        card.addEventListener("click", function () {
+          alert("Chi tiết dự án sẽ được mở ở đây trong một portfolio thực tế.");
+        });
+      });
+
+      // Đánh dấu phần đang hiển thị trong điều hướng
+      window.addEventListener("scroll", function () {
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll("nav a");
+
+        let currentSection = "";
+
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+
+          if (pageYOffset >= sectionTop - 200) {
+            currentSection = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${currentSection}`) {
+            link.style.backgroundColor = "#3498db";
+          } else {
+            link.style.backgroundColor = "";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
