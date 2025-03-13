@@ -1,0 +1,192 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f6f8fa;
+  color: #24292e;
+  padding: 0;
+  margin: 0;
+}
+
+.top-header {
+  background-color: #24292e;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.github-logo {
+  width: 36px;
+  height: 36px;
+  margin-right: 12px;
+}
+
+.logo-text {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  color: #c9d1d9;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: white;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #24292e;
+}
+
+.subtitle {
+  color: #586069;
+  font-size: 1.2rem;
+}
+
+.profiles-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.profile-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.profile-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.profile-header {
+  background-color: #0366d6;
+  height: 80px;
+  position: relative;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 4px solid white;
+  position: absolute;
+  bottom: -40px;
+  left: 20px;
+  background-color: white;
+}
+
+.profile-content {
+  padding: 3rem 1.5rem 1.5rem;
+}
+
+.profile-name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.profile-login {
+  color: #586069;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.profile-bio {
+  color: #24292e;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  height: 65px;
+  overflow: hidden;
+}
+
+.profile-stats {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #eaecef;
+  padding-top: 1rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-value {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.stat-label {
+  color: #586069;
+  font-size: 0.8rem;
+}
+
+footer {
+  margin-top: 3rem;
+  text-align: center;
+  color: #586069;
+  font-size: 0.9rem;
+  padding-bottom: 2rem;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: #586069;
+}
+
+@media (max-width: 600px) {
+  .top-header {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .nav-links {
+    margin-top: 1rem;
+    gap: 1rem;
+  }
+}
